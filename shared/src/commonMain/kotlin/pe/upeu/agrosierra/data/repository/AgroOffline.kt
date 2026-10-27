@@ -9,7 +9,7 @@ import pe.upeu.agrosierra.domain.repository.*
 import kotlin.uuid.Uuid
 class AgroOffline(private val api: AgroApi,private val local: BaseLocal,private val sesion: SesionRepository,private val reloj: Reloj): AgroRepository {
  private val mutex=Mutex()
- override fun lotes(valle: String,busqueda: String)=local.lotes(valle,busqueda)
+ override fun lotes(valle: String,busqueda: String,soloAbiertas: Boolean)=local.lotes(valle,busqueda,soloAbiertas)
  override fun labores(id: Long)=local.labores(id)
  override fun ultima()=local.ultima()
  private fun permiso(p: String): Sesion { val s=sesion.sesion.value ?: throw ErrorApi.NoAutorizado();if(!s.puede(p))throw ErrorApi.SinPrivilegio("No tienes autorización para esta operación");return s }

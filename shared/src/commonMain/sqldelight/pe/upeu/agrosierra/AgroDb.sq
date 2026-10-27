@@ -12,7 +12,7 @@ CREATE TABLE labor (
 CREATE TABLE envio(laborId INTEGER NOT NULL PRIMARY KEY,operacion TEXT NOT NULL,clave TEXT NOT NULL);
 CREATE TABLE metadato(clave TEXT NOT NULL PRIMARY KEY,valor TEXT NOT NULL);
 observarLotes:
-SELECT * FROM lote WHERE (:valle='' OR valle=:valle) AND (nombre LIKE '%' || :busqueda || '%' OR codigo LIKE '%' || :busqueda || '%') ORDER BY codigo;
+SELECT * FROM lote WHERE (:valle='' OR valle=:valle) AND (nombre LIKE '%' || :busqueda || '%' OR codigo LIKE '%' || :busqueda || '%') AND (:soloAbiertas=0 OR campaniaCerrada=0) ORDER BY codigo;
 observarLaboresPorLote:
 SELECT * FROM labor WHERE loteId=? AND id NOT IN(SELECT laborId FROM envio WHERE operacion='DELETE') ORDER BY fecha DESC,id DESC;
 siguienteIdLocal:

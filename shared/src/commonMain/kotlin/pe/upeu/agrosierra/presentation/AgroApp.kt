@@ -60,6 +60,7 @@ import pe.upeu.agrosierra.domain.model.*
  OutlinedTextField(e.busqueda,{vm.filtrar(busqueda=it)},label={Text("Buscar nombre o código")},singleLine=true,modifier=Modifier.fillMaxWidth())
  var menu by remember { mutableStateOf(false) }
  Box { TextButton({menu=true}) { Text("Valle: ${e.valle.ifBlank { "Todos" }} ▾") };DropdownMenu(menu,{menu=false}) { listOf("","Mantaro","Sagrado","Tambo").forEach { valle->DropdownMenuItem(text={Text(valle.ifBlank {"Todos"})},onClick={menu=false;vm.filtrar(valle=valle)}) } } }
+ Row(verticalAlignment=Alignment.CenterVertically) { Checkbox(e.soloAbiertas,vm::soloAbiertas);Text("Solo campa�as abiertas",fontSize=13.sp) }
  if(e.lotes.isEmpty() && !e.sincronizando)Text("No hay lotes para mostrar. Ajusta los filtros o sincroniza con conexión.",Modifier.padding(vertical=24.dp))
  LazyColumn(verticalArrangement=Arrangement.spacedBy(12.dp),contentPadding=PaddingValues(bottom=20.dp)) { items(e.lotes,key={it.id}) { l ->
   Card(onClick={vm.abrir(l)},shape=RoundedCornerShape(16.dp),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surface)) { Column(Modifier.fillMaxWidth().padding(16.dp)) {

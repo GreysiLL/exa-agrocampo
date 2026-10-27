@@ -65,6 +65,7 @@ import pe.upeu.agrosierra.domain.model.*
  LazyColumn(verticalArrangement=Arrangement.spacedBy(12.dp),contentPadding=PaddingValues(bottom=20.dp)) { items(e.lotes,key={it.id}) { l ->
   Card(onClick={vm.abrir(l)},shape=RoundedCornerShape(16.dp),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surface)) { Column(Modifier.fillMaxWidth().padding(16.dp)) {
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){Text(l.codigo,color=MaterialTheme.colorScheme.primary,fontSize=12.sp,fontWeight=FontWeight.Bold);Text(if(l.campaniaCerrada)"CERRADA" else "ABIERTA",fontSize=11.sp,color=if(l.campaniaCerrada)Color.Gray else MaterialTheme.colorScheme.secondary)}
+   if((e.pendientes[l.id] ?: 0L)>0L)Text("${e.pendientes[l.id]} labores pendientes",color=MaterialTheme.colorScheme.primary,fontSize=12.sp,modifier=Modifier.padding(top=6.dp))
    Text(l.nombre,fontSize=20.sp,fontWeight=FontWeight.SemiBold,modifier=Modifier.padding(vertical=6.dp));Text("${l.cultivo} · ${l.hectareas} ha · Valle ${l.valle}",fontSize=13.sp)
   } }
  } }

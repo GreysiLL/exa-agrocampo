@@ -13,6 +13,7 @@ class BaseLocal(driver: SqlDriver) {
  fun guardar(l: Labor) { q.guardarLabor(l.id,l.loteId,l.tipo.name,l.fecha,l.responsable,l.cantidad,l.observacion,if(l.pendiente)1L else 0L,l.responsableId,l.creadoEn,l.cantidadJornales) }
  fun guardar(l: Lote) { q.guardarLote(l.id,l.codigo,l.nombre,l.hectareas,l.cultivo,l.valle,if(l.campaniaCerrada)1L else 0L,l.dosisMaximaPorHectarea) }
  fun usuario(nombre: String) { if(q.meta("usuario").executeAsOneOrNull()!=nombre) db.transaction { q.borrarCola();q.borrarTodo();q.borrarLotes();q.borrarMeta();q.guardarMeta("usuario",nombre) } }
+ fun conteos(): Flow<Map<Long,Long>> = q.contarPendientesPorLote().asFlow().mapToList(Dispatchers.Default).map { filas->filas.associate { it.id to it.total } }.distinctUntilChanged()
  fun ultima() = q.meta("ultima").asFlow().mapToOneOrNull(Dispatchers.Default).map { it?.toLongOrNull() }
 }
 

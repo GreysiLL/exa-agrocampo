@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.upeu.agrosierra.AgroTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-27T19:46:37.943Z" hostname="LAPTOP-476K1L40" time="1.585">
+  <properties/>
+  <testcase name="enviaAntesDeDescargarYSincronizarDosVecesNoDuplica" classname="pe.upeu.agrosierra.AgroTest" time="1.508"/>
+  <testcase name="registroSinRedPersisteIdNegativoYEmiteFlow" classname="pe.upeu.agrosierra.AgroTest" time="0.012"/>
+  <testcase name="falloDeEnvioNoBorraPendienteNiDescarga" classname="pe.upeu.agrosierra.AgroTest" time="0.046"/>
+  <testcase name="eliminar204NoIntentaLeerUnCuerpo" classname="pe.upeu.agrosierra.AgroTest" time="0.01"/>
+  <testcase name="convierteDtoSinSerializacionEnDominio" classname="pe.upeu.agrosierra.AgroTest" time="0.0"/>
+  <testcase name="traduceErroresPorCodigoYConservaCampos" classname="pe.upeu.agrosierra.AgroTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+]]></system-err>
+</testsuite>

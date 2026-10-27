@@ -1,0 +1,146 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :androidApp:generateDebugResources
+> Task :androidApp:packageDebugResources
+> Task :shared:androidPreBuild UP-TO-DATE
+> Task :shared:preAndroidMainBuild UP-TO-DATE
+> Task :shared:generateAndroidMainEmptyResourceFiles
+> Task :androidApp:processDebugNavigationResources
+> Task :shared:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :shared:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :shared:generateResourceAccessorsForCommonMain SKIPPED
+> Task :shared:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :androidApp:parseDebugLocalResources
+> Task :shared:generateComposeResClass SKIPPED
+> Task :shared:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :androidApp:javaPreCompileDebug
+> Task :androidApp:generateDebugRFile
+> Task :androidApp:mergeDebugAssets
+> Task :androidApp:compressDebugAssets
+> Task :androidApp:desugarDebugFileDependencies
+> Task :shared:writeAndroidMainAarMetadata
+> Task :androidApp:compileDebugNavigationResources
+> Task :androidApp:checkDebugDuplicateClasses
+> Task :androidApp:checkDebugAarMetadata
+> Task :androidApp:mapDebugSourceSetPaths
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.intellij.util.containers.Unsafe (file:/C:/Users/HECTOR/.gradle/caches/modules-2/files-2.1/app.cash.sqldelight/compiler-env/2.1.0/100de8868cae12550b0ebf9e118dc8bc948e6183/compiler-env-2.1.0.jar)
+WARNING: Please consider reporting this to the maintainers of class com.intellij.util.containers.Unsafe
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+
+> Task :shared:generateCommonMainAgroDbInterface
+WARN: Attempt to load key 'ide.hide.excluded.files' for not yet loaded registry
+WARN: Attempt to load key 'psi.sleep.in.validity.check' for not yet loaded registry
+WARN: Attempt to load key 'psi.incremental.reparse.depth.limit' for not yet loaded registry
+
+> Task :androidApp:mergeDebugResources
+> Task :androidApp:createDebugCompatibleScreenManifests
+> Task :androidApp:extractDeepLinksDebug
+> Task :androidApp:mergeDebugJniLibFolders
+> Task :shared:mergeAndroidMainJniLibFolders
+> Task :shared:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:copyAndroidMainJniLibsProjectOnly
+> Task :androidApp:validateSigningDebug
+> Task :shared:processAndroidMainManifest
+> Task :androidApp:mergeDebugNativeLibs
+> Task :androidApp:processDebugMainManifest
+> Task :androidApp:processDebugManifest
+> Task :androidApp:writeDebugAppMetadata
+> Task :androidApp:writeDebugSigningConfigVersions
+
+> Task :androidApp:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+
+> Task :shared:androidJar
+> Task :shared:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:mergeAndroidHostTestAssets
+> Task :shared:checkAndroidHostTestAarMetadata
+> Task :shared:mapAndroidHostTestSourceSetPaths
+> Task :shared:generateAndroidHostTestResources
+> Task :androidApp:mergeExtDexDebug
+> Task :shared:processAndroidHostTestManifest
+> Task :shared:convertXmlValueResourcesForAndroidHostTest NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForAndroidHostTest NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForAndroidHostTest NO-SOURCE
+> Task :shared:generateResourceAccessorsForAndroidHostTest SKIPPED
+> Task :shared:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:generateResourceAccessorsForCommonTest SKIPPED
+> Task :shared:processAndroidHostTestJavaRes NO-SOURCE
+> Task :androidApp:processDebugManifestForPackage
+> Task :shared:mergeAndroidHostTestResources
+> Task :androidApp:processDebugResources
+> Task :shared:processAndroidHostTestResources
+> Task :shared:packageAndroidHostTestForUnitTest
+> Task :shared:generateAndroidHostTestConfig
+
+> Task :shared:compileAndroidMain
+w: file:///C:/Users/HECTOR/AppData/Local/Packages/sandbox.%7Bbfb54363-e35d-4190-998c-edc93ecf4de7%7D/AC/Temp/agrosierra-compilar/AgroCampo/shared/src/commonMain/kotlin/pe/upeu/agrosierra/data/remote/AgroApi.kt:16:346 'typealias IOException = IOException' is deprecated. Use kotlinx.io.IOException instead.
+w: file:///C:/Users/HECTOR/AppData/Local/Packages/sandbox.%7Bbfb54363-e35d-4190-998c-edc93ecf4de7%7D/AC/Temp/agrosierra-compilar/AgroCampo/shared/src/commonMain/kotlin/pe/upeu/agrosierra/data/repository/AgroOffline.kt:25:88 Elvis operator (?:) always returns the left operand of non-nullable type 'Long'.
+w: file:///C:/Users/HECTOR/AppData/Local/Packages/sandbox.%7Bbfb54363-e35d-4190-998c-edc93ecf4de7%7D/AC/Temp/agrosierra-compilar/AgroCampo/shared/src/commonMain/kotlin/pe/upeu/agrosierra/data/repository/SesionRest.kt:20:46 Redundant creation of Json format. Creating instances for each usage can be slow.
+
+> Task :shared:processAndroidMainJavaRes
+> Task :shared:bundleAndroidMainClassesToCompileJar
+> Task :shared:bundleAndroidMainClassesToRuntimeJar
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:compileDebugJavaWithJavac NO-SOURCE
+> Task :shared:compileAndroidHostTest
+> Task :androidApp:processDebugJavaRes
+> Task :androidApp:dexBuilderDebug
+> Task :androidApp:mergeProjectDexDebug
+> Task :shared:bundleLibRuntimeToDirAndroidMain
+> Task :androidApp:mergeDebugJavaResource
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.sqlite.SQLiteJDBCLoader in an unnamed module (file:/C:/Users/HECTOR/.gradle/caches/modules-2/files-2.1/org.xerial/sqlite-jdbc/3.49.1.0/145d3a6819b86f3618728273329392269104c8c7/sqlite-jdbc-3.49.1.0.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+
+> Task :shared:testAndroidHostTest
+
+AgroTest > contadorProvieneDeLaColaYSeLimpiaAlConfirmar PASSED
+
+AgroTest > enviaAntesDeDescargarYSincronizarDosVecesNoDuplica PASSED
+
+AgroTest > registroSinRedPersisteIdNegativoYEmiteFlow PASSED
+
+AgroTest > supervisorNoPuedeRegistrarAunqueInvoqueElRepositorio PASSED
+
+AgroTest > supervisorRecibePrivilegiosYAlcanceDesdeElContrato PASSED
+
+AgroTest > migracionDeJornalesConservaLaboresPrevias PASSED
+
+AgroTest > falloDeEnvioNoBorraPendienteNiDescarga PASSED
+
+AgroTest > filtroDeCampaniaSeCombinaConValleYBusquedaSinRed PASSED
+
+AgroTest > jornalesRecorrenDtoDominioYBaseLocal PASSED
+
+AgroTest > eliminar204NoIntentaLeerUnCuerpo PASSED
+
+AgroTest > loginIncorrectoNoSeConfundeConSesionVencida PASSED
+
+AgroTest > convierteDtoSinSerializacionEnDominio PASSED
+
+AgroTest > traduceErroresPorCodigoYConservaCampos PASSED
+
+> Task :androidApp:mergeLibDexDebug
+> Task :androidApp:packageDebug
+> Task :androidApp:createDebugApkListingFileRedirect
+> Task :androidApp:assembleDebug
+
+BUILD SUCCESSFUL in 1m 13s
+59 actionable tasks: 59 executed

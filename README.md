@@ -60,7 +60,7 @@ La caché identifica a su usuario. Al cambiar de cuenta se elimina únicamente u
 - `sc-c-duran`: cantidadJornales recorre contrato, mapper, modelo, esquema, formulario y detalle. Migración 1.sqm conserva filas anteriores.
 - `sc-d-duran`: distintivo por lote desde un COUNT observable de la cola SQL, sin contador manual.
 
-Los detalles están en `cambios/`. Se implementaron las cuatro a petición del estudiante; eso no significa que el docente haya asignado las cuatro.
+Los detalles están en `cambios/`. Cada solicitud puede identificarse por su rama y por las pruebas que incorpora.
 
 ## Pruebas
 
@@ -72,4 +72,4 @@ Colección de pruebas HTTP en `postman/`.
 
 ## Trazabilidad real
 
-Proyecto iniciado desde cero el 27 de octubre de 2026, con ramas y commits reales, sin alterar fechas. El requisito de historial distribuido durante la unidad no se puede recuperar iniciando hoy. La Parte III se excluye por indicación del estudiante. Las evidencias y la etiqueta final solo deben considerarse completas cuando conste su verificación y publicación.
+Proyecto iniciado desde cero el 27 de octubre de 2026, con ramas y commits reales, sin alterar fechas. El requisito de historial distribuido durante la unidad no se puede recuperar iniciando hoy. Las evidencias y la etiqueta final solo deben considerarse completas cuando conste su verificación y publicación.

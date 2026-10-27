@@ -46,3 +46,9 @@ INSERT OR REPLACE INTO metadato VALUES(?,?);
 borrarMeta:
 DELETE FROM metadato;
 
+
+contarPendientesPorLote:
+SELECT lote.id, COUNT(envio.laborId) AS total FROM lote
+LEFT JOIN labor ON labor.loteId=lote.id
+LEFT JOIN envio ON envio.laborId=labor.id
+GROUP BY lote.id;

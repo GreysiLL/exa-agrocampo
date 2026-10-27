@@ -5,6 +5,7 @@ interface SesionRepository { val sesion: StateFlow<Sesion?>;suspend fun entrar(u
 interface AgroRepository {
  fun lotes(valle: String,busqueda: String,soloAbiertas: Boolean=false): Flow<List<Lote>>
  fun labores(id: Long): Flow<List<Labor>>
+ fun conteos(): Flow<Map<Long,Long>>
  fun ultima(): Flow<Long?>
  suspend fun guardar(l: Labor): Labor
  suspend fun eliminar(l: Labor)

@@ -48,5 +48,9 @@ class AgroTest {
   val d=driverMemoria();val local=BaseLocal(d)
   try { local.guardar(Lote(1,"AS-001","Pampa",2.0,"Papa","Mantaro",false,2.0));local.guardar(Lote(2,"AS-002","Pampa",2.0,"Papa","Mantaro",true,2.0));local.guardar(Lote(3,"AS-003","Pampa",2.0,"Papa","Tambo",false,2.0));assertEquals(listOf(1L),local.lotes("Mantaro","Pampa",true).first().map {it.id});assertEquals(2,local.lotes("Mantaro","",false).first().size) }finally{d.close()}
  }
+ @Test fun supervisorRecibePrivilegiosYAlcanceDesdeElContrato() {
+  val dto=SesionDto("token","calidad1","SUPERVISOR_CALIDAD",setOf("LOTE_LEER","LABOR_LEER","LABOR_EDITAR"),"Supervisor",4,true)
+  val s=dto.dominio();assertTrue(s.edicionGlobal);assertTrue(s.puede("LABOR_EDITAR"));assertFalse(s.puede("CAMPANIA_CERRAR"));assertFalse(s.puede("LABOR_CREAR"))
+ }
 }
 

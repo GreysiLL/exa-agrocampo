@@ -7,7 +7,7 @@ import pe.upeu.agrosierra.domain.model.*
 import pe.upeu.agrosierra.domain.repository.*
 import pe.upeu.agrosierra.domain.usecase.*
 import pe.upeu.agrosierra.data.local.Reloj
-data class UiState(val sesion: Sesion?=null,val cargando: Boolean=false,val sincronizando: Boolean=false,val lotes: List<Lote> = emptyList(),val labores: List<Labor> = emptyList(),val seleccionado: Lote?=null,val formulario: Labor?=null,val perfil: Boolean=false,val valle: String="",val busqueda: String="",val ultima: Long?=null,val mensaje: String?=null,val error: ErrorApi?=null,val campos: Map<String,String> = emptyMap())
+data class UiState(val sesion: Sesion?=null,val cargando: Boolean=false,val sincronizando: Boolean=false,val lotes: List<Lote> = emptyList(),val labores: List<Labor> = emptyList(),val seleccionado: Lote?=null,val formulario: Labor?=null,val perfil: Boolean=false,val valle: String="",val soloAbiertas: Boolean=false,val busqueda: String="",val ultima: Long?=null,val mensaje: String?=null,val error: ErrorApi?=null,val campos: Map<String,String> = emptyMap())
 class AgroViewModel(private val sesiones: SesionRepository,private val repo: AgroRepository,private val sincronizar: SincronizarUseCase,private val guardar: GuardarLaborUseCase,private val observar: ObservarLotesUseCase,private val reloj: Reloj): ViewModel() {
  private val estado=MutableStateFlow(UiState());val ui=estado.asStateFlow()
  private var listado: Job?=null;private var detalle: Job?=null;private var meta: Job?=null
@@ -15,8 +15,9 @@ class AgroViewModel(private val sesiones: SesionRepository,private val repo: Agr
   listado?.cancel();detalle?.cancel();meta?.cancel();estado.value=UiState(sesion=s)
   if(s!=null) { observarListado();meta=viewModelScope.launch { repo.ultima().collect { fecha->estado.update { it.copy(ultima=fecha) } } };sync() }
  } };sesiones.recuperar() }
- private fun observarListado() { listado?.cancel();val e=ui.value;listado=viewModelScope.launch { observar(e.valle,e.busqueda).collect { filas->estado.update { it.copy(lotes=filas,seleccionado=it.seleccionado?.let { l->filas.find { f->f.id==l.id } ?: l }) } } } }
+ private fun observarListado() { listado?.cancel();val e=ui.value;listado=viewModelScope.launch { observar(e.valle,e.busqueda,e.soloAbiertas).collect { filas->estado.update { it.copy(lotes=filas,seleccionado=it.seleccionado?.let { l->filas.find { f->f.id==l.id } ?: l }) } } } }
  fun filtrar(valle: String=ui.value.valle,busqueda: String=ui.value.busqueda) { estado.update { it.copy(valle=valle,busqueda=busqueda) };observarListado() }
+ fun soloAbiertas(valor: Boolean) { estado.update { it.copy(soloAbiertas=valor) };observarListado() }
  fun entrar(u: String,c: String) { if(u.isBlank() || c.isBlank()) { estado.update { it.copy(mensaje="Completa usuario y contraseña") };return };viewModelScope.launch { estado.update { it.copy(cargando=true,mensaje=null,error=null) };try { sesiones.entrar(u.trim(),c) }catch(e: Exception){error(e)}finally {estado.update { it.copy(cargando=false) }} } }
  fun salir() { sesiones.salir() }
  fun perfil() { estado.update { it.copy(perfil=true,mensaje=null,error=null) } }

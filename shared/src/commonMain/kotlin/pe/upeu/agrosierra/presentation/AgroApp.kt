@@ -85,6 +85,7 @@ import pe.upeu.agrosierra.domain.model.*
   Card(colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surface)) { Column(Modifier.fillMaxWidth().padding(14.dp)) {
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){Text(labor.tipo.name,fontWeight=FontWeight.Bold);Text(labor.fecha,fontSize=12.sp)}
    Text("${labor.responsable} · Cantidad: ${labor.cantidad}",fontSize=13.sp,modifier=Modifier.padding(vertical=6.dp))
+   Text("Jornales: ${labor.cantidadJornales}",fontSize=13.sp)
    if(labor.observacion.isNotBlank())Text(labor.observacion,fontSize=13.sp)
    Text(if(labor.pendiente)"Pendiente de sincronizar · ID ${labor.id}" else "Sincronizada · ID ${labor.id}",fontSize=11.sp,color=if(labor.pendiente)MaterialTheme.colorScheme.primary else Color.Gray,modifier=Modifier.padding(top=8.dp))
    Row {
@@ -103,8 +104,9 @@ import pe.upeu.agrosierra.domain.model.*
   var menu by remember { mutableStateOf(false) };Box { OutlinedButton({menu=true}) { Text("Tipo: ${tipo.name} ▾") };DropdownMenu(menu,{menu=false}){TipoLabor.entries.forEach { t->DropdownMenuItem(text={Text(t.name)},onClick={tipo=t;menu=false}) }} }
   Campo(fecha,{fecha=it},"Fecha (AAAA-MM-DD)",e.campos["fecha"])
   Campo(cantidad,{cantidad=it},"Cantidad aplicada",e.campos["cantidad"])
+  Campo(jornales,{jornales=it},"Cantidad de jornales",e.campos["cantidadJornales"])
   Campo(nota,{nota=it},"Observación",e.campos["observacion"])
-  Spacer(Modifier.height(20.dp));Button({vm.guardarLabor(tipo,fecha,cantidad,nota)},enabled=!e.cargando,modifier=Modifier.fillMaxWidth().height(50.dp)){Text("Guardar labor")};Spacer(Modifier.height(20.dp))
+  Spacer(Modifier.height(20.dp));Button({vm.guardarLabor(tipo,fecha,cantidad,nota,jornales)},enabled=!e.cargando,modifier=Modifier.fillMaxWidth().height(50.dp)){Text("Guardar labor")};Spacer(Modifier.height(20.dp))
  }
 }
 @Composable private fun Campo(v: String,c: (String)->Unit,n: String,error: String?) { OutlinedTextField(v,c,label={Text(n)},isError=error!=null,supportingText={if(error!=null)Text(error)},modifier=Modifier.fillMaxWidth().padding(top=8.dp)) }

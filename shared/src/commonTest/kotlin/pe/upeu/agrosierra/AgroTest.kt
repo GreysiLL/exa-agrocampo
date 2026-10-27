@@ -66,5 +66,10 @@ class AgroTest {
   val d=driverMemoria()
   try { val local=BaseLocal(d);local.guardar(nueva().copy(id=10));d.execute(null,"ALTER TABLE labor DROP COLUMN cantidadJornales",0);pe.upeu.agrosierra.db.AgroDb.Schema.migrate(d,1,2);val l=local.labores(1).first().single();assertEquals(10L,l.id);assertEquals(0.0,l.cantidadJornales) }finally{d.close()}
  }
+ @Test fun contadorProvieneDeLaColaYSeLimpiaAlConfirmar()=runTest {
+  val d=driverMemoria();val local=BaseLocal(d)
+  val http=crearCliente(MockEngine { r->respond(when {r.url.encodedPath.endsWith("usuarios/me")->me;r.method==HttpMethod.Post->laborJson;r.url.encodedPath.endsWith("/lotes")->pagina(loteJson);else->pagina(laborJson)},headers=headersOf(HttpHeaders.ContentType,"application/json")) },TokenActual())
+  try { local.guardar(LoteDto(1,"AS-001","Lote",2.0,"Papa","Mantaro",false,2.0).dominio());assertEquals(0L,local.conteos().first()[1]);val repo=AgroOffline(AgroApi(http),local,sesion(),reloj);repo.guardar(nueva());assertEquals(1L,local.conteos().first()[1]);repo.sincronizar();assertEquals(0L,local.conteos().first()[1]) }finally{http.close();d.close()}
+ }
 }
 

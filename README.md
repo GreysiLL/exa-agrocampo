@@ -73,3 +73,7 @@ Colección de pruebas HTTP en `postman/`.
 ## Trazabilidad real
 
 Proyecto iniciado desde cero el 27 de octubre de 2026, con ramas y commits reales, sin alterar fechas. El requisito de historial distribuido durante la unidad no se puede recuperar iniciando hoy. Las evidencias y la etiqueta final solo deben considerarse completas cuando conste su verificación y publicación.
+
+## Informe de evidencias
+
+[Informe del examen con capturas](evidencias/Examen_Parcial_II_AgroSierra_DuranCastro.pdf). Verificación final: backend 9 pruebas; Android 13 pruebas; Postman/Newman 27 solicitudes y 30 comprobaciones aprobadas.

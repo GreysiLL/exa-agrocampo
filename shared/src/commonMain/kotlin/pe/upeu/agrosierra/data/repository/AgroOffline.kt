@@ -18,6 +18,7 @@ class AgroOffline(private val api: AgroApi,private val local: BaseLocal,private 
   val campos=mutableMapOf<String,String>()
   if(l.cantidad<=0 || !l.cantidad.isFinite())campos["cantidad"]="Ingresa una cantidad mayor que cero"
   if(!Regex("""\d{4}-\d{2}-\d{2}""").matches(l.fecha))campos["fecha"]="Usa el formato AAAA-MM-DD"
+  if(!l.cantidadJornales.isFinite() || l.cantidadJornales<0)campos["cantidadJornales"]="Los jornales no pueden ser negativos"
   if(l.observacion.length>500)campos["observacion"]="Máximo 500 caracteres"
   if(campos.isNotEmpty())throw ErrorApi.Validacion(campos,"Revisa los campos")
   val nuevo=l.copy(id=if(l.id==0L)minOf(-1L,(local.q.siguienteIdLocal().executeAsOne() ?: 0L)-1) else l.id,pendiente=true,responsable=if(l.id==0L)s.nombre else l.responsable,responsableId=if(l.id==0L)s.id else l.responsableId)

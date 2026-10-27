@@ -25,10 +25,10 @@ class AgroViewModel(private val sesiones: SesionRepository,private val repo: Agr
  fun volver() { estado.update { if(it.formulario!=null)it.copy(formulario=null,campos=emptyMap(),error=null,mensaje=null) else if(it.perfil)it.copy(perfil=false) else it.copy(seleccionado=null,labores=emptyList(),mensaje=null,error=null) } }
  fun nueva() { val l=ui.value.seleccionado ?: return;estado.update { it.copy(formulario=Labor(0,l.id,TipoLabor.RIEGO,reloj.hoy(),"",0.0,"",false),campos=emptyMap(),mensaje=null,error=null) } }
  fun editar(l: Labor) { estado.update { it.copy(formulario=l,campos=emptyMap(),mensaje=null,error=null) } }
- fun guardarLabor(tipo: TipoLabor,fecha: String,cantidad: String,observacion: String) { val l=ui.value.formulario ?: return;viewModelScope.launch {
+ fun guardarLabor(tipo: TipoLabor,fecha: String,cantidad: String,observacion: String,jornales: String) { val l=ui.value.formulario ?: return;viewModelScope.launch {
   estado.update { it.copy(cargando=true,campos=emptyMap(),error=null,mensaje=null) }
   try {
-   val guardada=guardar(l.copy(tipo=tipo,fecha=fecha,cantidad=cantidad.toDoubleOrNull() ?: 0.0,observacion=observacion))
+   val guardada=guardar(l.copy(tipo=tipo,fecha=fecha,cantidad=cantidad.toDoubleOrNull() ?: 0.0,observacion=observacion,cantidadJornales=jornales.toDoubleOrNull() ?: -1.0))
    estado.update { it.copy(formulario=guardada) }
    try { val r=sincronizar();estado.update { it.copy(mensaje="Guardado. Enviados: ${r.enviados}; recibidos: ${r.recibidos}",formulario=null) } }
    catch(e: ErrorApi.SinConexion){estado.update { it.copy(formulario=null,mensaje="Labor guardada sin conexión. Pendiente de sincronizar.") }}

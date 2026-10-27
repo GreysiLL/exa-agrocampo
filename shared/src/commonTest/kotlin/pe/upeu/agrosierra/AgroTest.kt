@@ -44,5 +44,9 @@ class AgroTest {
  @Test fun eliminar204NoIntentaLeerUnCuerpo()=runTest {
   val http=crearCliente(MockEngine { respond("",HttpStatusCode.NoContent) },TokenActual());try {AgroApi(http).eliminar(20)}finally{http.close()}
  }
+ @Test fun filtroDeCampaniaSeCombinaConValleYBusquedaSinRed()=runTest {
+  val d=driverMemoria();val local=BaseLocal(d)
+  try { local.guardar(Lote(1,"AS-001","Pampa",2.0,"Papa","Mantaro",false,2.0));local.guardar(Lote(2,"AS-002","Pampa",2.0,"Papa","Mantaro",true,2.0));local.guardar(Lote(3,"AS-003","Pampa",2.0,"Papa","Tambo",false,2.0));assertEquals(listOf(1L),local.lotes("Mantaro","Pampa",true).first().map {it.id});assertEquals(2,local.lotes("Mantaro","",false).first().size) }finally{d.close()}
+ }
 }
 

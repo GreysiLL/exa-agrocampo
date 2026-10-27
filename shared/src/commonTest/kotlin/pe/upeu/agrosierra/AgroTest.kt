@@ -57,5 +57,14 @@ class AgroTest {
   val http=crearCliente(MockEngine { error("No debe llamar a la red") },TokenActual())
   try {val repo=AgroOffline(AgroApi(http),local,sesiones,reloj);assertFailsWith<ErrorApi.SinPrivilegio>{repo.guardar(nueva())};assertTrue(local.labores(1).first().isEmpty())}finally{http.close();d.close()}
  }
+ @Test fun jornalesRecorrenDtoDominioYBaseLocal()=runTest {
+  val dto=LaborDto(31,1,"RIEGO","2026-10-27","Técnico",2.0,"Prueba",1,"",2.5)
+  val l=dto.dominio();assertEquals(2.5,l.peticion().cantidadJornales)
+  val d=driverMemoria();try {val local=BaseLocal(d);local.guardar(l);assertEquals(2.5,local.labores(1).first().single().cantidadJornales)}finally{d.close()}
+ }
+ @Test fun migracionDeJornalesConservaLaboresPrevias()=runTest {
+  val d=driverMemoria()
+  try { val local=BaseLocal(d);local.guardar(nueva().copy(id=10));d.execute(null,"ALTER TABLE labor DROP COLUMN cantidadJornales",0);pe.upeu.agrosierra.db.AgroDb.Schema.migrate(d,1,2);val l=local.labores(1).first().single();assertEquals(10L,l.id);assertEquals(0.0,l.cantidadJornales) }finally{d.close()}
+ }
 }
 

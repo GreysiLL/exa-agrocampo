@@ -1,42 +1,48 @@
-* a7275e4 (HEAD -> feature/documentacion-y-evidencias) docs(app): documenta arquitectura sincronización y solicitudes de cambio
-*   54874d6 (develop) fix: integra versión Android con trece pruebas aprobadas
+*   5dbaa19 (main) feat: presenta AgroSierra verificado para la Unidad 2
 |\  
-| * 908c55d (fix/integracion-examen) fix(app): distingue credenciales muestra antigüedad y conserva pendientes al cambiar cuenta
-|/  
-*   ba5a29a feat: integra contador observable de pendientes por lote
-|\  
-| * 1979bbc (sc-d-duran) test(sc-d): verifica contador antes del registro después y al sincronizar
-| * 083764d feat(sc-d): muestra distintivo por lote observando cambios de la base local
-| * ebe6782 feat(sc-d): obtiene pendientes por lote desde consulta SQL observable
-|/  
-*   036ef16 feat: integra jornales en contrato persistencia e interfaz
-|\  
-| * 666f3be (sc-c-duran) test(sc-c): verifica recorrido de jornales y migración sin pérdida de labores
-| * 83f0317 feat(sc-c): guarda valida y muestra jornales en formulario y detalle
-| * a76d8e9 feat(sc-c): agrega jornales al dominio DTO y migración de la base local
-|/  
-*   2f59f11 feat: integra comprobaciones del supervisor en la aplicación
-|\  
-| * 89ad922 (sc-b-duran) docs(sc-b): explica interfaz guiada por privilegios recibidos del servicio
-| * e2ba982 test(sc-b): rechaza registro local sin privilegio antes de usar la red
-| * 6c1f39e test(sc-b): interpreta privilegios y alcance global del supervisor
-|/  
-*   7ffb0dd feat: integra filtro observable de campañas abiertas
-|\  
-| * 50ca621 (sc-a-duran) test(sc-a): comprueba combinación de filtros en base local sin conexión
-| * 7c8003a feat(sc-a): ofrece filtro de campañas abiertas sin depender de la red
-| * b37ceb9 feat(sc-a): combina filtros de campaña valle y búsqueda en consulta local
-|/  
-*   d16de1d fix: integra archivos de datos del proyecto Android
-|\  
-| * 2bb0c89 (fix/incluir-capa-datos) fix(git): incluye capa de datos y limita exclusión a la base del servidor
-|/  
-*   1d7771c test: integra seis pruebas de código común verificadas
-|\  
-| * 36d60d4 (feature/pruebas-offline) test(app): comprueba DTO errores registro local orden de envío y respuesta vacía
-|/  
-*   353f41b feat: integra aplicación Android compilada
-|\  
+| *   a9460d9 (develop) docs: integra evidencias verificadas del examen
+| |\  
+| | * 44de212 (HEAD -> feature/documentacion-y-evidencias) docs(evidencias): registra pruebas reales capturas y verificación de artefactos
+| | * a7275e4 docs(app): documenta arquitectura sincronización y solicitudes de cambio
+| |/  
+| *   54874d6 fix: integra versión Android con trece pruebas aprobadas
+| |\  
+| | * 908c55d (fix/integracion-examen) fix(app): distingue credenciales muestra antigüedad y conserva pendientes al cambiar cuenta
+| |/  
+| *   ba5a29a feat: integra contador observable de pendientes por lote
+| |\  
+| | * 1979bbc (sc-d-duran) test(sc-d): verifica contador antes del registro después y al sincronizar
+| | * 083764d feat(sc-d): muestra distintivo por lote observando cambios de la base local
+| | * ebe6782 feat(sc-d): obtiene pendientes por lote desde consulta SQL observable
+| |/  
+| *   036ef16 feat: integra jornales en contrato persistencia e interfaz
+| |\  
+| | * 666f3be (sc-c-duran) test(sc-c): verifica recorrido de jornales y migración sin pérdida de labores
+| | * 83f0317 feat(sc-c): guarda valida y muestra jornales en formulario y detalle
+| | * a76d8e9 feat(sc-c): agrega jornales al dominio DTO y migración de la base local
+| |/  
+| *   2f59f11 feat: integra comprobaciones del supervisor en la aplicación
+| |\  
+| | * 89ad922 (sc-b-duran) docs(sc-b): explica interfaz guiada por privilegios recibidos del servicio
+| | * e2ba982 test(sc-b): rechaza registro local sin privilegio antes de usar la red
+| | * 6c1f39e test(sc-b): interpreta privilegios y alcance global del supervisor
+| |/  
+| *   7ffb0dd feat: integra filtro observable de campañas abiertas
+| |\  
+| | * 50ca621 (sc-a-duran) test(sc-a): comprueba combinación de filtros en base local sin conexión
+| | * 7c8003a feat(sc-a): ofrece filtro de campañas abiertas sin depender de la red
+| | * b37ceb9 feat(sc-a): combina filtros de campaña valle y búsqueda en consulta local
+| |/  
+| *   d16de1d fix: integra archivos de datos del proyecto Android
+| |\  
+| | * 2bb0c89 (fix/incluir-capa-datos) fix(git): incluye capa de datos y limita exclusión a la base del servidor
+| |/  
+| *   1d7771c test: integra seis pruebas de código común verificadas
+| |\  
+| | * 36d60d4 (feature/pruebas-offline) test(app): comprueba DTO errores registro local orden de envío y respuesta vacía
+| |/  
+| * 353f41b feat: integra aplicación Android compilada
+|/| 
 | * 24ec9ee (feature/seguridad-y-contrato) feat(app): implementa sesión segura Ktor y catálogo local con sincronización
 |/  
-* dde7451 (main) docs: registra alcance y tareas del examen AgroSierra
+* dde7451 docs: registra alcance y tareas del examen AgroSierra

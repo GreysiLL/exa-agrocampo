@@ -52,5 +52,10 @@ class AgroTest {
   val dto=SesionDto("token","calidad1","SUPERVISOR_CALIDAD",setOf("LOTE_LEER","LABOR_LEER","LABOR_EDITAR"),"Supervisor",4,true)
   val s=dto.dominio();assertTrue(s.edicionGlobal);assertTrue(s.puede("LABOR_EDITAR"));assertFalse(s.puede("CAMPANIA_CERRAR"));assertFalse(s.puede("LABOR_CREAR"))
  }
+ @Test fun supervisorNoPuedeRegistrarAunqueInvoqueElRepositorio()=runTest {
+  val d=driverMemoria();val local=BaseLocal(d);val sesiones=sesion();sesiones.sesion.value=s.copy(privilegios=setOf("LABOR_EDITAR","LOTE_LEER","LABOR_LEER"),edicionGlobal=true)
+  val http=crearCliente(MockEngine { error("No debe llamar a la red") },TokenActual())
+  try {val repo=AgroOffline(AgroApi(http),local,sesiones,reloj);assertFailsWith<ErrorApi.SinPrivilegio>{repo.guardar(nueva())};assertTrue(local.labores(1).first().isEmpty())}finally{http.close();d.close()}
+ }
 }
 

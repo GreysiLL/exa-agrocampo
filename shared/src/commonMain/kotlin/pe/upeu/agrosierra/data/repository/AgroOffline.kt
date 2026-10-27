@@ -11,6 +11,7 @@ class AgroOffline(private val api: AgroApi,private val local: BaseLocal,private 
  private val mutex=Mutex()
  override fun lotes(valle: String,busqueda: String,soloAbiertas: Boolean)=local.lotes(valle,busqueda,soloAbiertas)
  override fun labores(id: Long)=local.labores(id)
+ override fun conteos()=local.conteos()
  override fun ultima()=local.ultima()
  private fun permiso(p: String): Sesion { val s=sesion.sesion.value ?: throw ErrorApi.NoAutorizado();if(!s.puede(p))throw ErrorApi.SinPrivilegio("No tienes autorización para esta operación");return s }
  override suspend fun guardar(l: Labor): Labor = mutex.withLock {

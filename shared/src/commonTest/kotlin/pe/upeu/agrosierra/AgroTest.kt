@@ -48,5 +48,14 @@ class AgroTest {
   val d=driverMemoria();val local=BaseLocal(d)
   try { local.guardar(Lote(1,"AS-001","Pampa",2.0,"Papa","Mantaro",false,2.0));local.guardar(Lote(2,"AS-002","Pampa",2.0,"Papa","Mantaro",true,2.0));local.guardar(Lote(3,"AS-003","Pampa",2.0,"Papa","Tambo",false,2.0));assertEquals(listOf(1L),local.lotes("Mantaro","Pampa",true).first().map {it.id});assertEquals(2,local.lotes("Mantaro","",false).first().size) }finally{d.close()}
  }
+ @Test fun supervisorRecibePrivilegiosYAlcanceDesdeElContrato() {
+  val dto=SesionDto("token","calidad1","SUPERVISOR_CALIDAD",setOf("LOTE_LEER","LABOR_LEER","LABOR_EDITAR"),"Supervisor",4,true)
+  val s=dto.dominio();assertTrue(s.edicionGlobal);assertTrue(s.puede("LABOR_EDITAR"));assertFalse(s.puede("CAMPANIA_CERRAR"));assertFalse(s.puede("LABOR_CREAR"))
+ }
+ @Test fun supervisorNoPuedeRegistrarAunqueInvoqueElRepositorio()=runTest {
+  val d=driverMemoria();val local=BaseLocal(d);val sesiones=sesion();sesiones.sesion.value=s.copy(privilegios=setOf("LABOR_EDITAR","LOTE_LEER","LABOR_LEER"),edicionGlobal=true)
+  val http=crearCliente(MockEngine { error("No debe llamar a la red") },TokenActual())
+  try {val repo=AgroOffline(AgroApi(http),local,sesiones,reloj);assertFailsWith<ErrorApi.SinPrivilegio>{repo.guardar(nueva())};assertTrue(local.labores(1).first().isEmpty())}finally{http.close();d.close()}
+ }
 }
 
